@@ -48,7 +48,7 @@ class ProgramController extends Controller
     public function show($id)
     {
         $program = Program::findOrFail($id);
-        dd($program);
+        return view ('programs.show', compact ('program'));
     }
 
     /**

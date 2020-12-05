@@ -48,7 +48,7 @@ class CollegeController extends Controller
     public function show($id)
     {
         $college = College::findOrFail($id);
-        dd($college);
+        return view ('colleges.show', compact ('college'));
     }
 
     /**

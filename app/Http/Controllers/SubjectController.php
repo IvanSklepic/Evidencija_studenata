@@ -48,7 +48,7 @@ class SubjectController extends Controller
     public function show($id)
     {
         $subject = Subject::findOrFail($id);
-        dd($subject);
+        return view ('subjects.show', compact ('subject'));
     }
 
     /**

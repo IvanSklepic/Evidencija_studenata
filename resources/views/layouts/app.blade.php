@@ -23,34 +23,34 @@
         <li class="nav-item active">
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li><li class="nav-item">
-            <a class="nav-link" href="/users">Users</a>
+            <a class="nav-link" href="{{ route('users.index') }}">Users</a>
         </li>
          <li class="nav-item">
-            <a class="nav-link" href="/countries">Countries</a>
+            <a class="nav-link" href="{{ route('countries.index') }}">Countries</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/cities">Cities</a>
+            <a class="nav-link" href="{{ route('cities.index') }}">Cities</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/colleges">Colleges</a>
+            <a class="nav-link" href="{{ route('colleges.index') }}">Colleges</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/programs">Programs</a>
+            <a class="nav-link" href="{{ route('programs.index') }}">Programs</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/roles">Roles</a>
+            <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/grades">Grades</a>
+            <a class="nav-link" href="{{ route('grades.index') }}">Grades</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="students">Students</a>
+            <a class="nav-link" href="{{ route('students.index') }}">Students</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/teachers">Teachers</a>
+            <a class="nav-link" href="{{ route('teachers.index') }}">Teachers</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/subjects">Subjects</a>
+            <a class="nav-link" href="{{ route('subjects.index') }}">Subjects</a>
         </li>
         </ul>
     </div>
