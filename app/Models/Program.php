@@ -13,4 +13,8 @@ class Program extends Model
         'name',
         'description'
     ];
+
+    public function subjects() { return $this->hasMany(Subject::class);} 
+
+    public function college() { return $this->belongsTo(College::class);}
 }

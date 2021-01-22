@@ -4,7 +4,8 @@
   <div>
     <h3 class="mt-3">Student detail</h3>
     <ul class="list-unstyled">
-        <li>Student name: {{ $student->name}} </li>
+        <li>First name: {{ $student->first_name}} </li>
+        <li>Last name: {{ $student->last_name}} </li>
         <li>Birth date: {{ $student->birth_date}} </li>
         <li>Email: {{ $student->email}} </li>
         <li>Phone number: {{ $student->phone_number}} </li>

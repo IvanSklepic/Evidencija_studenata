@@ -12,4 +12,7 @@ class Grade extends Model
     protected $fillable = [
         'grade'
     ];
+
+    public function student() { return $this->belongsToMany(Student::class);}
+    public function subject() { return $this->belongsToMany(Subject::class);}
 }

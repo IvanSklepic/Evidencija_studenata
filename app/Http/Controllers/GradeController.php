@@ -25,7 +25,7 @@ class GradeController extends Controller
      */
     public function create()
     {
-        //
+        return view('grades.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'grade' => 'required|unique:grades|max:255',
+            
+            
+        ]);
+        $grade = Grade::create($validated);
+        return view('grades.show', compact('grade'));
     }
 
     /**
@@ -59,7 +65,8 @@ class GradeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $grade = Grade::findOrFail($id);
+        return view ('grades.edit', compact ('grade'));
     }
 
     /**
@@ -71,7 +78,16 @@ class GradeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'grade' => 'required|max:255',
+            'created_at' => 'required|max:255',
+        ]);
+
+        $grade = Grade::findOrFail($id);
+        $grade->fill($validated);
+        $grade->save();
+
+        return view('grades.show', compact('grade'));
     }
 
     /**

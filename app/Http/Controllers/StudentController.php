@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
     /**
@@ -36,7 +36,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|unique:students|max:255',
+            'last_name' => 'required|unique:students|max:255',
+            'birth_date' => 'required|unique:students|max:255',
+            'email' => 'required|unique:students|max:255',
+            'phone_number' => 'required|unique:students|max:255',
+            'citizenship' => 'required|unique:students|max:255',
+            'nationality' => 'required|unique:students|max:255',
+        ]);
+        $student = Student::create($validated);
+        return view('students.show', compact('student'));
     }
 
     /**
@@ -59,7 +69,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view ('students.edit', compact ('student'));
     }
 
     /**
@@ -71,7 +82,21 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required:students|max:255',
+            'last_name' => 'required:students|max:255',
+            'birth_date' => 'required:students|max:255',
+            'email' => 'required:students|max:255',
+            'phone_number' => 'required:students|max:255',
+            'citizenship' => 'required:students|max:255',
+            'nationality' => 'required:students|max:255',
+        ]);
+
+        $student = Studnet::findOrFail($id);
+        $student->fill($validated);
+        $student->save();
+
+        return view('students.show', compact('student'));
     }
 
     /**

@@ -16,4 +16,8 @@ class College extends Model
         'phone_numer',
         'oib'
     ];
+
+    public function programs() { return $this->hasMany(Program::class);} 
+
+    public function city() { return $this->belongsTo(City::class);}
 }

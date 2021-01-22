@@ -25,7 +25,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('cities.create');
     }
 
     /**
@@ -36,15 +36,15 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:cities|max:255',
+            'zip_code' => 'required|unique:cities|max:255',
+        ]);
+        $city = City::create($validated);
+        return view('cities.show', compact('city'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         $city = City::findOrFail($id);
@@ -59,7 +59,8 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $city = City::findOrFail($id);
+        return view('cities.edit', compact('city'));
     }
 
     /**
@@ -71,7 +72,16 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'zip_code' => 'required|max:255',
+        ]);
+
+        $city = Country::findOrFail($id);
+        $city->fill($validated);
+        $city->save();
+
+        return view('cities.show', compact('city'));
     }
 
     /**

@@ -12,4 +12,8 @@ class Role extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function users() { return $this->hasmany(User::class);}
+    public function teaachers() { return $this->hasmany(Teacher::class);}
+    public function students() { return $this->hasmany(Student::class);}
 }

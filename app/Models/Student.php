@@ -17,4 +17,8 @@ class Student extends Model
         'citizenship',
         'nationality'
     ];
+
+    public function grades() { return $this->hasMany(Grade::class);} 
+
+    public function role() { return $this->belongsTo(Role::class);}
 }

@@ -25,7 +25,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('subjects.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:subjects|max:255',
+            'information' => 'required|unique:subjects|max:255',
+            'content' => 'required|unique:subjects|max:255',
+           
+        ]);
+        $subject = Subject::create($validated);
+        return view('subjects.show', compact('subject'));
     }
 
     /**
@@ -59,7 +66,8 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subject = Subject::create($id);
+        return view('subjects.edit', compact('subject'));
     }
 
     /**
@@ -71,7 +79,17 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'information' => 'required|max:255',
+            'content' => 'required|max:255',
+        ]);
+
+        $subject = Subject::findOrFail($id);
+        $subject->fill($validated);
+        $subject->save();
+
+        return view('subjects.show', compact('subject'));
     }
 
     /**

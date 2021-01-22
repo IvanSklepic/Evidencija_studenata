@@ -25,7 +25,7 @@ class CollegeController extends Controller
      */
     public function create()
     {
-        //
+        return view('colleges.create');
     }
 
     /**
@@ -36,7 +36,15 @@ class CollegeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:colleges|max:255',
+            'oib' => 'required|unique:colleges|max:255',
+            'address' => 'required|unique:colleges|max:255',
+            'email' => 'required|unique:colleges|max:255',
+            'phone_number' => 'required|unique:colleges|max:255',
+        ]);
+        $college = College::create($validated);
+        return view('colleges.show', compact('college'));
     }
 
     /**
@@ -59,7 +67,8 @@ class CollegeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $college = College::findOrFail($id);
+        return view('colleges.edit', compact('college'));
     }
 
     /**
@@ -71,7 +80,19 @@ class CollegeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'oib' => 'required|max:255',
+            'address' => 'required|max:255',
+            'email' => 'required|max:255',
+            'phone_number' => 'required|max:255',
+        ]);
+
+        $college = College::findOrFail($id);
+        $college->fill($validated);
+        $college->save();
+
+        return view('colleges.show', compact('college'));
     }
 
     /**

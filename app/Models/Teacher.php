@@ -16,4 +16,5 @@ class Teacher extends Model
         'email',
         'title'
     ];
+    public function role() { return $this->belongsTo(Role::class);}
 }

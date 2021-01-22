@@ -25,7 +25,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('teachers.create');
     }
 
     /**
@@ -36,7 +36,16 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|unique:teachers|max:255',
+            'last_name' => 'required|unique:teachers|max:255',
+            'birth_date' => 'required|unique:teachers|max:255',
+            'phone_number' => 'required|unique:teachers|max:255',
+            'email' => 'required|unique:teachers|max:255',
+            'title' => 'required|unique:teachers|max:255',
+        ]);
+        $teacher = Teacher::create($validated);
+        return view('teachers.show', compact('teacher'));
     }
 
     /**
@@ -59,7 +68,8 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
+        $teacher = Teacher::findOrFail($id);
+        return view ('teachers.edit', compact ('teacher'));
     }
 
     /**
@@ -71,7 +81,20 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required:teachers|max:255',
+            'last_name' => 'required:teachers|max:255',
+            'birth_date' => 'required:teachers|max:255',
+            'phone_number' => 'required:teachers|max:255',
+            'email' => 'required:teachers|max:255',
+            'title' => 'required:teachers|max:255',
+        ]);
+
+        $teacher = Teacher::findOrFail($id);
+        $teacher->fill($validated);
+        $teacher->save();
+
+        return view('teachers.show', compact('teacher'));
     }
 
     /**

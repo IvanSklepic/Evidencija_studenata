@@ -25,7 +25,7 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        //
+        return view('programs.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:programs|max:255',
+            'description' => 'required|unique:programs|max:255',
+            
+        ]);
+        $program = Program::create($validated);
+        return view('programs.show', compact('program'));
     }
 
     /**
@@ -59,7 +65,8 @@ class ProgramController extends Controller
      */
     public function edit($id)
     {
-        //
+        $program = Program::findOrFail($id);
+        return view ('programs.edit', compact ('program'));
     }
 
     /**
@@ -71,7 +78,14 @@ class ProgramController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+        ]);
+
+        $program = Program::findOrFail($id);
+        $program->fill($validated);
+        $program->save();
     }
 
     /**

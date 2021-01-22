@@ -6,7 +6,8 @@
     <thead>
         <tr>
         <th scope="col">ID</th>
-        <th scope="col">Student name</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
         <th scope="col">Birth date</th>
         <th scope="col">Email</th>
         <th scope="col">Phone number</th>
@@ -19,7 +20,8 @@
         @foreach ($students->items() as $student)
             <tr>
                 <td>{{ $student->id }}</td>
-                <td>{{ $student->name }}</td>
+                <td>{{ $student->first_name }}</td>
+                <td>{{ $student->last_name }}</td>
                 <td>{{ $student->birth_date }}</td>
                 <td>{{ $student->email }}</td>
                 <td>{{ $student->phone_number }}</td>

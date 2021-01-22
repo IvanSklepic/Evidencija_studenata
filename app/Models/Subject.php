@@ -14,4 +14,7 @@ class Subject extends Model
         'information',
         'content',
     ];
+    public function grades() { return $this->hasMany(Grade::class);}
+
+    public function programs() { return $this->belongsTo(Program::class);}
 }
